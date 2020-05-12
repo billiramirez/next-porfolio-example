@@ -1,15 +1,20 @@
-import Layout from "../components/layout";
 import { Component } from "react";
+import Layout from "../components/layout";
+import ErrorPage from "./_error";
 
 export default class About extends Component {
   static async getInitialProps() {
     const res = await fetch("https://api.github.com/users/billiramirez");
+    const statusCode = res.status > 200 ? res.status : false;
     const data = await res.json();
-    return { user: data };
+    return { user: data, statusCode };
   }
 
   render() {
-    const { user } = this.props;
+    const { user, statusCode } = this.props;
+    if (statusCode) {
+      return <ErrorPage statusCode={statusCode} />;
+    }
     return (
       <Layout title="About us">
         <p> {user.name}</p>
