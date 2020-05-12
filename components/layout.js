@@ -11,10 +11,6 @@ const Layout = ({ children, title }) => (
   <div className="root">
     <Head>
       <title>Next Portfolio</title>
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/nprogress@0.2.0/nprogress.css"
-      />
     </Head>
     <header>
       <Link href="/">
